@@ -1,5 +1,5 @@
 {
-  "name": "react-native-dropdown-select-list",
+  "name": "react-native-dropdown-fuzzy-select-list",
   "version": "2.0.3",
   "description": "⭐ React Native Select List Equivalent to Html's Select with options\"",
   "main": "index.ts",

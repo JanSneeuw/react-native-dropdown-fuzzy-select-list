@@ -12,6 +12,8 @@ import {
 
 import { SelectListProps } from '..';
 
+import Fuse from 'fuse.js';
+
 type L1Keys = { key?: any; value?: any; disabled?: boolean | undefined }
 
 const SelectList: React.FC<SelectListProps> =  ({
@@ -138,6 +140,16 @@ const SelectList: React.FC<SelectListProps> =  ({
                             <TextInput 
                                 placeholder={searchPlaceholder}
                                 onChangeText={(val) => {
+                                    
+                                    const fuse = new Fuse(data, {
+                                        keys: ['value']
+                                    })
+                                    const fusedSearch = fuse.search(val);
+                                    console.log(fusedSearch[0])
+                                    val = fusedSearch[0]?.item?.value
+                                    if (val === undefined || val === null){
+                                        val = ""
+                                    };
                                     let result =  data.filter((item: L1Keys) => {
                                         val.toLowerCase();
                                         let row = item.value.toLowerCase()
