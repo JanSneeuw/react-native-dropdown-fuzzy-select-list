@@ -145,7 +145,6 @@ const SelectList: React.FC<SelectListProps> =  ({
                                         keys: ['value']
                                     })
                                     const fusedSearch = fuse.search(val);
-                                    console.log(fusedSearch[0])
                                     val = fusedSearch[0]?.item?.value
                                     if (val === undefined || val === null){
                                         val = ""
