@@ -1,6 +1,6 @@
 {
-  "name": "react-native-dropdown-fuzzy-select-list",
-  "version": "2.0.3",
+  "name": "@jansneeuw/react-native-dropdown-fuzzy-select-list",
+  "version": "2.0.4",
   "description": "⭐ React Native Select List Equivalent to Html's Select with options\"",
   "main": "index.ts",
   "types": "index.d.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danish1658/react-native-dropdown-select-list.git"
+    "url": "git+https://https://github.com/JanSneeuw/react-native-dropdown-fuzzy-select-list.git"
   },
   "keywords": [
     "picker",
@@ -41,10 +41,10 @@
     "@types/react-native": "^0.70.6",
     "typescript": "^4.8.4"
   },
-  "author": "Danish Amin Dar",
+  "author": "Muhammet Atas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/danish1658/react-native-dropdown-select-list/issues"
+    "url": "https://https://github.com/JanSneeuw/react-native-dropdown-fuzzy-select-list/issues"
   },
-  "homepage": "https://github.com/danish1658/react-native-dropdown-select-list#readme"
+  "homepage": "https://https://github.com/JanSneeuw/react-native-dropdown-fuzzy-select-list#readme"
 }

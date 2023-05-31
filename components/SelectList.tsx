@@ -38,13 +38,14 @@ const SelectList: React.FC<SelectListProps> =  ({
         onSelect = () => {},
         save = 'key',
         dropdownShown = false,
-        fontFamily
+        fontFamily,
+        intialValue = "",
     }) => {
 
     const oldOption = React.useRef(null)
     const [_firstRender,_setFirstRender] = React.useState<boolean>(true);
     const [dropdown, setDropdown] = React.useState<boolean>(dropdownShown);
-    const [selectedval, setSelectedVal] = React.useState<any>("");
+    const [selectedval, setSelectedVal] = React.useState<any>(intialValue);
     const [height,setHeight] = React.useState<number>(200)
     const animatedvalue = React.useRef(new Animated.Value(0)).current;
     const [filtereddata,setFilteredData] = React.useState(data)
@@ -56,16 +57,16 @@ const SelectList: React.FC<SelectListProps> =  ({
             toValue:height,
             duration:500,
             useNativeDriver:false,
-            
+
         }).start()
     }
     const slideup = () => {
-        
+
         Animated.timing(animatedvalue,{
             toValue:0,
             duration:500,
             useNativeDriver:false,
-            
+
         }).start(() => setDropdown(false))
     }
 
@@ -74,7 +75,7 @@ const SelectList: React.FC<SelectListProps> =  ({
             setHeight(maxHeight)
     },[maxHeight])
 
-    
+
     React.useEffect(() => {
         setFilteredData(data);
       },[data])
@@ -87,7 +88,7 @@ const SelectList: React.FC<SelectListProps> =  ({
         }
         onSelect()
     },[selectedval])
-  
+
 
     React.useEffect(() => {
         if(!_firstRender && defaultOption && oldOption.current != defaultOption.key ){
@@ -97,12 +98,12 @@ const SelectList: React.FC<SelectListProps> =  ({
             setSelectedVal(defaultOption.value);
         }
         if(defaultOption && _firstRender && defaultOption.key != undefined){
-            
+
             oldOption.current = defaultOption.key
             setSelected(defaultOption.key);
             setSelectedVal(defaultOption.value);
         }
-        
+
     },[defaultOption])
 
     React.useEffect(() => {
@@ -111,9 +112,9 @@ const SelectList: React.FC<SelectListProps> =  ({
                 slidedown();
             else
                 slideup();
-            
+
         }
-        
+
     },[dropdownShown])
 
 
@@ -124,11 +125,11 @@ const SelectList: React.FC<SelectListProps> =  ({
                 (dropdown && search)
                 ?
                     <View style={[styles.wrapper,boxStyles]}>
-                        <View style={{flexDirection:'row',alignItems:'center',flex:1}}> 
+                        <View style={{flexDirection:'row',alignItems:'center',flex:1}}>
                             {
                                 (!searchicon)
                                 ?
-                                <Image 
+                                <Image
                                     source={require('../assets/images/search.png')}
                                     resizeMode='contain'
                                     style={{width:20,height:20,marginRight:7}}
@@ -136,11 +137,11 @@ const SelectList: React.FC<SelectListProps> =  ({
                                 :
                                 searchicon
                             }
-                            
-                            <TextInput 
+
+                            <TextInput
                                 placeholder={searchPlaceholder}
                                 onChangeText={(val) => {
-                                    
+
                                     const fuse = new Fuse(data, {
                                         keys: ['value']
                                     })
@@ -163,7 +164,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                 {
                                     (!closeicon)
                                     ?
-                                        <Image 
+                                        <Image
                                             source={require('../assets/images/close.png')}
                                             resizeMode='contain'
                                             style={{width:17,height:17}}
@@ -171,12 +172,12 @@ const SelectList: React.FC<SelectListProps> =  ({
                                     :
                                         closeicon
                                 }
-                                   
+
                                 </TouchableOpacity>
-                                
-                           
+
+
                         </View>
-                        
+
                     </View>
                 :
                     <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ slidedown() }else{ slideup() } }}>
@@ -184,7 +185,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                         {
                             (!arrowicon)
                             ?
-                                <Image 
+                                <Image
                                     source={require('../assets/images/chevron.png')}
                                     resizeMode='contain'
                                     style={{width:20,height:20}}
@@ -192,10 +193,10 @@ const SelectList: React.FC<SelectListProps> =  ({
                             :
                                 arrowicon
                         }
-                        
+
                     </TouchableOpacity>
             }
-            
+
             {
                 (dropdown)
                 ?
@@ -223,17 +224,17 @@ const SelectList: React.FC<SelectListProps> =  ({
                                                 }else{
                                                     setSelected(key)
                                                 }
-                                                
+
                                                 setSelectedVal(value)
                                                 slideup()
                                                 setTimeout(() => {setFilteredData(data)}, 800)
-                                                
+
                                             }}>
                                                 <Text style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
                                             </TouchableOpacity>
                                         )
                                     }
-                                    
+
                                 })
                                 :
                                 <TouchableOpacity style={[styles.option,dropdownItemStyles]} onPress={ () => {
@@ -241,21 +242,21 @@ const SelectList: React.FC<SelectListProps> =  ({
                                     setSelectedVal("")
                                     slideup()
                                     setTimeout(() => setFilteredData(data), 800)
-                                    
+
                                 }}>
                                     <Text style={[{fontFamily},dropdownTextStyles]}>{notFoundText}</Text>
                                 </TouchableOpacity>
                             }
-                            
-                            
-                            
+
+
+
                         </ScrollView>
                     </Animated.View>
                 :
                 null
             }
-            
-            
+
+
         </View>
     )
 }
