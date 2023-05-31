@@ -39,13 +39,13 @@ const SelectList: React.FC<SelectListProps> =  ({
         save = 'key',
         dropdownShown = false,
         fontFamily,
-        intialValue = "",
+        initialValue = "",
     }) => {
 
     const oldOption = React.useRef(null)
     const [_firstRender,_setFirstRender] = React.useState<boolean>(true);
     const [dropdown, setDropdown] = React.useState<boolean>(dropdownShown);
-    const [selectedval, setSelectedVal] = React.useState<any>(intialValue);
+    const [selectedval, setSelectedVal] = React.useState<any>(initialValue);
     const [height,setHeight] = React.useState<number>(200)
     const animatedvalue = React.useRef(new Animated.Value(0)).current;
     const [filtereddata,setFilteredData] = React.useState(data)
